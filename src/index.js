@@ -1,16 +1,18 @@
 const readline = require("readline");
+const os = require("os");
 const { up, cd, ls, cat, add, rn, cp, mv, rm } = require("./fs-commands");
 const getOsInfo = require("./os-commands");
 const calculateHash = require("./hash-commands");
+const { compress, decompress } = require("./zlib-commands");
 
 const argv = process.argv.slice(2);
 const usernameArg = argv.find((arg) => arg.startsWith("--username="));
 const username = usernameArg.split("=")[1];
+process.chdir(os.homedir());
 
 console.log(`Welcome to the File Manager, ${username}!`);
-
 console.log(`You are currently in ${process.cwd()}`);
-// TODO: chanfe the starting directory
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -54,6 +56,12 @@ const processCommands = (command) => {
       break;
     case "hash":
       calculateHash(param);
+      break;
+    case "compress":
+      compress(param);
+      break;
+    case "decompress":
+      decompress(param);
       break;
     case ".exit":
       console.log(
