@@ -1,6 +1,7 @@
 const readline = require("readline");
 const { up, cd, ls, cat, add, rn, cp, mv, rm } = require("./fs-commands");
 const getOsInfo = require("./os-commands");
+const calculateHash = require("./hash-commands");
 
 const argv = process.argv.slice(2);
 const usernameArg = argv.find((arg) => arg.startsWith("--username="));
@@ -50,6 +51,9 @@ const processCommands = (command) => {
       break;
     case "os":
       getOsInfo(param);
+      break;
+    case "hash":
+      calculateHash(param);
       break;
     case ".exit":
       console.log(
