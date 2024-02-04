@@ -1,5 +1,6 @@
 const readline = require("readline");
-const { up, cd, ls, cat, add, rn, cp, mv, rm } = require("./commands");
+const { up, cd, ls, cat, add, rn, cp, mv, rm } = require("./fs-commands");
+const getOsInfo = require("./os-commands");
 
 const argv = process.argv.slice(2);
 const usernameArg = argv.find((arg) => arg.startsWith("--username="));
@@ -8,7 +9,7 @@ const username = usernameArg.split("=")[1];
 console.log(`Welcome to the File Manager, ${username}!`);
 
 console.log(`You are currently in ${process.cwd()}`);
-
+// TODO: chanfe the starting directory
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -46,6 +47,9 @@ const processCommands = (command) => {
       break;
     case "rm":
       rm(param);
+      break;
+    case "os":
+      getOsInfo(param);
       break;
     case ".exit":
       console.log(
