@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-file-manager",
+  "version": "1.0.0",
+  "description": "RSS File manager task",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "start": "node src/index.js "
+  },
+  "author": "hxnxikazuchi",
+  "license": "ISC"
+}
